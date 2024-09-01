@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommender</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div id="movie-form-container">
+        <h1>Discover Your Next Favorite Movie</h1>
+        <p class="description">Enter the name of a movie you love, and we'll recommend other movies you'll enjoy.</p>
+        <form method="POST" id="movie-form">
+            <input type="text" name="movie" placeholder="Enter a movie name" required>
+            <input type="submit" value="Find Recommendations">
+        </form>
+    </div>
+</body>
+</html>

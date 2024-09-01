@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendations</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div id="main-container">
+        <h1 id="central-movie">{{ movie }}</h1>
+        {% for title in recommendations %}
+            <div class="recommendation-title" id="movie-{{ loop.index }}">
+                {{ title }}
+            </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        const recommendations = document.getElementsByClassName('recommendation-title');
+
+        const screenWidth = window.innerWidth;
+        const screenHeight = window.innerHeight;
+        const padding = 100; // Minimum distance between movies
+        const positions = [];
+
+        Array.from(recommendations).forEach((element) => {
+            let x, y;
+            let overlap;
+
+            do {
+                overlap = false;
+                x = Math.random() * (screenWidth - padding);
+                y = Math.random() * (screenHeight - padding);
+
+                // Check for overlap with existing positions
+                for (let pos of positions) {
+                    const distance = Math.sqrt(Math.pow(pos.x - x, 2) + Math.pow(pos.y - y, 2));
+                    if (distance < padding) {
+                        overlap = true;
+                        break;
+                    }
+                }
+            } while (overlap);
+
+            positions.push({ x, y });
+
+            element.style.position = 'absolute';
+            element.style.top = `${y}px`;
+            element.style.left = `${x}px`;
+        });
+    </script>
+</body>
+</html>
