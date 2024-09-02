@@ -3,51 +3,29 @@
 <head>
     <meta charset="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Recommendations</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles_moviemap.css') }}">
 </head>
 <body>
     <div id="main-container">
-        <h1 id="central-movie">{{ movie }}</h1>
-        {% for title in recommendations %}
-            <div class="recommendation-title" id="movie-{{ loop.index }}">
-                {{ title }}
-            </div>
-        {% endfor %}
+        <h1>Movie Recommendations</h1>
+        <div id="recommendations-container">
+            {% for movie, recs in recommendations.items() %}
+                <div class="movie-section">
+                    <h2>{{ movie }}</h2>
+                    <ol>
+                        {% for rec in recs %}
+                            <li {% if rec == common_movie %}class="highlighted-movie"{% endif %}>{{ rec }}</li>
+                        {% endfor %}
+                    </ol>
+                </div>
+            {% endfor %}
+        </div>
+
+        {% if common_movie %}
+        <div id="common-movie">
+            <h2>Common Movie Found: <span class="highlighted-movie">{{ common_movie }}</span></h2>
+        </div>
+        {% endif %}
     </div>
-
-    <script>
-        const recommendations = document.getElementsByClassName('recommendation-title');
-
-        const screenWidth = window.innerWidth;
-        const screenHeight = window.innerHeight;
-        const padding = 100; // Minimum distance between movies
-        const positions = [];
-
-        Array.from(recommendations).forEach((element) => {
-            let x, y;
-            let overlap;
-
-            do {
-                overlap = false;
-                x = Math.random() * (screenWidth - padding);
-                y = Math.random() * (screenHeight - padding);
-
-                // Check for overlap with existing positions
-                for (let pos of positions) {
-                    const distance = Math.sqrt(Math.pow(pos.x - x, 2) + Math.pow(pos.y - y, 2));
-                    if (distance < padding) {
-                        overlap = true;
-                        break;
-                    }
-                }
-            } while (overlap);
-
-            positions.push({ x, y });
-
-            element.style.position = 'absolute';
-            element.style.top = `${y}px`;
-            element.style.left = `${x}px`;
-        });
-    </script>
 </body>
 </html>

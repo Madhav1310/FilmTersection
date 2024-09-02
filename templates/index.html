@@ -3,17 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Recommender</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Movie Intersection</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles_index.css') }}">
 </head>
 <body>
-    <div id="movie-form-container">
-        <h1>Discover Your Next Favorite Movie</h1>
-        <p class="description">Enter the name of a movie you love, and we'll recommend other movies you'll enjoy.</p>
-        <form method="POST" id="movie-form">
-            <input type="text" name="movie" placeholder="Enter a movie name" required>
-            <input type="submit" value="Find Recommendations">
+    <div id="selection-container">
+        <h1>Find Intersection of Movies</h1>
+        <form id="selection-form">
+            <p>Select the number of movies:</p>
+            <label>
+                <input type="radio" name="numMovies" value="1" required> 1 Movie
+            </label>
+            <label>
+                <input type="radio" name="numMovies" value="2"> 2 Movies
+            </label>
+            <label>
+                <input type="radio" name="numMovies" value="3"> 3 Movies
+            </label>
+            <label>
+                <input type="radio" name="numMovies" value="4"> 4 Movies
+            </label>
+            <br><br>
+            <button type="button" id="next-button">Next</button>
+        </form>
+        <form id="movie-input-form" style="display: none;" method="POST">
+            <!-- Movie input fields will be dynamically generated here -->
         </form>
     </div>
+
+    <script>
+        document.getElementById('next-button').addEventListener('click', function() {
+            const numMovies = document.querySelector('input[name="numMovies"]:checked').value;
+            const movieInputForm = document.getElementById('movie-input-form');
+            movieInputForm.innerHTML = '';  // Clear any existing input fields
+
+            for (let i = 1; i <= numMovies; i++) {
+                const inputField = document.createElement('input');
+                inputField.type = 'text';
+                inputField.name = `movie${i}`;
+                inputField.placeholder = `Enter Movie ${i}`;
+                inputField.required = true;
+                movieInputForm.appendChild(inputField);
+                movieInputForm.appendChild(document.createElement('br'));
+            }
+
+            const submitButton = document.createElement('button');
+            submitButton.type = 'submit';
+            submitButton.textContent = 'Find Recommendations';
+            movieInputForm.appendChild(submitButton);
+
+            movieInputForm.style.display = 'block';
+            document.getElementById('selection-form').style.display = 'none';
+        });
+    </script>
 </body>
 </html>

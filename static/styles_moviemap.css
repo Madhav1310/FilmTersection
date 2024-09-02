@@ -1,0 +1,83 @@
+/* Highlighted common movie style */
+.highlighted-movie {
+    background-color: #21bdc0;
+    font-weight: bold;
+    color: #000;
+    padding: 2px 5px;
+    border-radius: 5px;
+}
+
+/* Global Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #141414;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+#main-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+h1 {
+    color: #e50914;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#original-movies-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.original-movie h2 {
+    font-size: 18px;
+    color: #fff;
+}
+
+#recommendations-container {
+    display: flex;
+    justify-content: space-around; /* Spread the columns evenly */
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.movie-section {
+    flex: 1;
+    margin: 10px;
+    min-width: 280px; /* Minimum width to ensure columns are side by side */
+    max-width: 30%;
+}
+
+.movie-section h2 {
+    font-size: 20px;
+    color: #e50914;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.movie-section ol {
+    margin: 0;
+    padding-left: 20px;
+    list-style-type: decimal;
+}
+
+.movie-section li {
+    margin-bottom: 5px;
+    font-size: 16px;
+    color: #fff;
+}
+
+#common-movie h2 {
+    font-size: 22px;
+    color: #00ff00;
+    text-align: center;
+    margin-top: 40px;
+}
