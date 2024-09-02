@@ -44,7 +44,7 @@ h1 {
 
 #recommendations-container {
     display: flex;
-    justify-content: space-around; /* Spread the columns evenly */
+    justify-content: space-around; 
     flex-wrap: wrap;
     margin-top: 20px;
 }
@@ -52,7 +52,7 @@ h1 {
 .movie-section {
     flex: 1;
     margin: 10px;
-    min-width: 280px; /* Minimum width to ensure columns are side by side */
+    min-width: 280px; 
     max-width: 30%;
 }
 
